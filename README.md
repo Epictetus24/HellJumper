@@ -9,7 +9,7 @@ I plan to finish this script so that it also configures the ssl certificate with
 Note:
 It currently lacks support for passwords, I use public key based authentication. As digital ocean allows you to spin up a droplet with your key ready - that's what I've gone for. 
 
-```bash
+```sh
  go run helljumper.go /root/.ssh/id_rsa sshserver mydomain.com
 Remote server: remoteserver:22
 [+] Updating your server
