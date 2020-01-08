@@ -54,8 +54,8 @@ func runSSH(userkey, remoteserver, cmd string) {
 }
 
 func main() {
-	if len(os.Args) < 2 {
-                log.Fatalln("Usage: %s [sshprivatekey] [sshserver]",os.Args[0])
+	if len(os.Args) < 3 {
+                log.Fatalf("Usage: %s [sshprivatekey] [sshserver] [certbot_domain]",os.Args[0])
 	}
 	//var hostKey ssh.PublicKey
 	// A public key may be used to authenticate against the remote
@@ -88,5 +88,15 @@ func main() {
         fmt.Println("[+] Installing Certbot Repo and client")
         certbotSSH := "add-apt-repository ppa:certbot/certbot && apt install python-certbot-apache -y"
 	runSSH(flagkey,flagserver,certbotSSH)
+
+	//start apache2 and setup stuff to then install certifcate
+	fmt.Println("[+] Ensuring Apache2 is started")
+	apache2 := "service apache2 start"
+	runSSH(flagkey,flagserver,apache2)
+
+	fmt.Printf("[+] Allowing port 80,443 through firewall.\n[+] Grabbing certbot certificate with non-interactive, no email ;'certonly --apache'.\n")
+	certbotEX := "ufw allow 80,443/tcp && certbot certonly --apache --register-unsafely-without-email -n --domains "
+	certbotEX += os.Args[3]
+	runSSH(flagkey,flagserver,certbotEX)
 
 }
