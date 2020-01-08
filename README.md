@@ -1,5 +1,5 @@
 # HellJumper
-A short program written in go to SSH into a jumpserver and prepare it for use.
+A short program written in go to SSH into a jumpserver and prepare it for use. Mostly for learning Go, otherwise a bash script could do basically all of this.
 
 # What it does:
 Currently it will; Login to your (presumed Ubuntu) server with a private key, update & upgrade, modify the sshd_config to allow ssh port forwarding on any port and installs certbot - but does not configure it.
