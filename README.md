@@ -58,7 +58,7 @@ Use 'apt autoremove' to remove them.
 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
 
 [+] Allowing port 80,443 through firewall.
-[+] Grabbing certbot certificate with 'certonly --standalone, will kill Apache2 instance.'
+[+] Grabbing certbot certificate with 'certonly --apache'.
 Skipping adding existing rule
 Skipping adding existing rule (v6)
 IMPORTANT NOTES:
